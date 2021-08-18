@@ -42,7 +42,7 @@
       "required": false
     },
     {
-      "id": "c_userID",
+      "id": "c_twitterUsername",
       "required": false
     },
     {

@@ -21,7 +21,7 @@
           "visibleOnAdd": true
         },
         {
-          "id": "c_userID"
+          "id": "c_twitterUsername"
         },
         {
           "id": "yext/body"
@@ -54,7 +54,6 @@
       "entryType": "DIVIDER"
     },
     {
-      "defaultCollapsed": true,
       "displayName": "Internal Use Only",
       "entryType": "SECTION",
       "fields": [

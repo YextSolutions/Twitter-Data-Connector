@@ -7,9 +7,9 @@
     "sourceConfig": {
       "apiPullConfig": {
         "requestType": "GET",
-        "url": "https://api.twitter.com/2/users/${{UserId}}/tweets",
+        "url": "https://api.twitter.com/2/users/19165996/tweets",
         "authentication": {
-          "bearerToken": "AAAAAAAAAAAAAAAAAAAAAGuvSQEAAAAARoDsPDyNl9NZmlO%2Bc7nHhOiEaA8%3DtetUPN9LDJE1zWgCCtshfV6inpU6zwH0R3poKvahRP4NUapEgN"
+          "bearerToken": "${{km/connector.TweetTimeline.api_bearer_token}}"
         },
         "paginationControl": {
           "cursorPagination": {
@@ -39,61 +39,88 @@
     "selectors": [
       {
         "type": "JSON",
-        "header": "id",
+        "header": "Entity ID",
         "path": "id"
       },
       {
         "type": "JSON",
-        "header": "body",
+        "header": "Text",
         "path": "text"
       },
       {
         "type": "JSON",
-        "header": "dateposted",
+        "header": "Date",
         "path": "created_at"
       },
       {
         "type": "JSON",
-        "header": "author",
+        "header": "Author",
         "path": "author_id"
       },
       {
         "type": "JSON",
-        "header": "possiblySensitive",
+        "header": "Possibly Sensitive",
         "path": "possibly_sensitive"
       },
       {
         "type": "JSON",
-        "header": "retweets",
+        "header": "Retweets",
         "path": "public_metrics.retweet_count"
       },
       {
         "type": "JSON",
-        "header": "replies",
+        "header": "Replies",
         "path": "public_metrics.reply_count"
       },
       {
         "type": "JSON",
-        "header": "likes",
+        "header": "Likes",
         "path": "public_metrics.like_count"
       },
       {
         "type": "JSON",
-        "header": "quotes",
+        "header": "Quotes",
         "path": "public_metrics.quote_count"
       },
       {
         "type": "JSON",
-        "header": "source",
+        "header": "Source",
         "path": "source"
       }
     ]
   },
   "transforms": [
     {
+      "function": {
+        "inputHeaders": {
+          "headers": [
+            "Author"
+          ]
+        },
+        "plugin": "Replace User ID",
+        "function": "insertUsername"
+      }
+    },
+    {
+      "findAndReplace": {
+        "inputHeaders": {
+          "headers": [
+            "Author"
+          ]
+        },
+        "valueToFind": {
+          "plainText": {
+            "value": "@@",
+            "ignoreCase": false
+          }
+        },
+        "replacement": "@"
+      }
+    },
+    {
       "extractText": {
-        "inputHeader": "dateposted",
-        "newColumnHeader": "dateposted2",
+        "inputHeader": "Date",
+        "newColumnHeader": "Date Converted",
         "extractOperation": "ALL_TEXT_BEFORE",
         "extractFrom": "FIRST_INSTANCE_MATCHING_TEXT",
         "valueToFind": {
@@ -108,7 +135,7 @@
       "findAndReplace": {
         "inputHeaders": {
           "headers": [
-            "possiblySensitive"
+            "Possibly Sensitive"
           ]
         },
         "valueToFind": {
@@ -117,14 +144,14 @@
             "ignoreCase": false
           }
         },
-        "replacement": "No"
+        "replacement": "no"
       }
     },
     {
       "findAndReplace": {
         "inputHeaders": {
           "headers": [
-            "possiblySensitive"
+            "Possibly Sensitive"
           ]
         },
         "valueToFind": {
@@ -133,64 +160,64 @@
             "ignoreCase": false
           }
         },
-        "replacement": "Yes"
+        "replacement": "yes"
       }
     }
   ],
   "mappings": [
     {
-      "field": "yext/name",
-      "header": "dateposted",
-      "subfieldPath": []
-    },
-    {
-      "field": "c_possiblySensitive",
-      "header": "possiblySensitive",
-      "subfieldPath": []
-    },
-    {
       "field": "yext/datePosted",
-      "header": "dateposted2",
-      "subfieldPath": []
-    },
-    {
-      "field": "c_replies",
-      "header": "replies",
-      "subfieldPath": []
-    },
-    {
-      "field": "c_userID",
-      "header": "author",
-      "subfieldPath": []
-    },
-    {
-      "field": "yext/entityId",
-      "header": "id",
-      "subfieldPath": []
-    },
-    {
-      "field": "c_source",
-      "header": "source",
-      "subfieldPath": []
-    },
-    {
-      "field": "yext/body",
-      "header": "body",
+      "header": "Date Converted",
       "subfieldPath": []
     },
     {
       "field": "c_retweets",
-      "header": "retweets",
+      "header": "Retweets",
+      "subfieldPath": []
+    },
+    {
+      "field": "yext/entityId",
+      "header": "Entity ID",
+      "subfieldPath": []
+    },
+    {
+      "field": "c_possiblySensitive",
+      "header": "Possibly Sensitive",
+      "subfieldPath": []
+    },
+    {
+      "field": "yext/body",
+      "header": "Text",
       "subfieldPath": []
     },
     {
       "field": "c_quotes",
-      "header": "quotes",
+      "header": "Quotes",
       "subfieldPath": []
     },
     {
       "field": "c_likes",
-      "header": "likes",
+      "header": "Likes",
+      "subfieldPath": []
+    },
+    {
+      "field": "c_replies",
+      "header": "Replies",
+      "subfieldPath": []
+    },
+    {
+      "field": "yext/name",
+      "header": "Date",
+      "subfieldPath": []
+    },
+    {
+      "field": "c_source",
+      "header": "Source",
+      "subfieldPath": []
+    },
+    {
+      "field": "c_twitterUsername",
+      "header": "Author",
       "subfieldPath": []
     }
   ],
