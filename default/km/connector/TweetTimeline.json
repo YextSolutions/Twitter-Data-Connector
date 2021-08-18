@@ -7,9 +7,9 @@
     "sourceConfig": {
       "apiPullConfig": {
         "requestType": "GET",
-        "url": "https://api.twitter.com/2/users/19165996/tweets",
+        "url": "https://api.twitter.com/2/users/${{Twitter User ID}}/tweets",
         "authentication": {
-          "bearerToken": "${{km/connector.TweetTimeline.api_bearer_token}}"
+          "bearerToken": "AAAAAAAAAAAAAAAAAAAAAGuvSQEAAAAARoDsPDyNl9NZmlO%2Bc7nHhOiEaA8%3DtetUPN9LDJE1zWgCCtshfV6inpU6zwH0R3poKvahRP4NUapEgN"
         },
         "paginationControl": {
           "cursorPagination": {
