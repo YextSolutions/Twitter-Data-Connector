@@ -7,7 +7,7 @@
     "sourceConfig": {
       "apiPullConfig": {
         "requestType": "GET",
-        "url": "https://api.twitter.com/2/users/${{Twitter User ID}}/tweets",
+        "url": "https://api.twitter.com/2/users/${{TwitterUserID}}/tweets",
         "authentication": {
           "bearerToken": "AAAAAAAAAAAAAAAAAAAAAGuvSQEAAAAARoDsPDyNl9NZmlO%2Bc7nHhOiEaA8%3DtetUPN9LDJE1zWgCCtshfV6inpU6zwH0R3poKvahRP4NUapEgN"
         },
