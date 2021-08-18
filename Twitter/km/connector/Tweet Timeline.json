@@ -1,0 +1,201 @@
+{
+  "$id": "tWTR",
+  "$schema": "https://schema.yext.com/config/km/connector/v1",
+  "displayName": "TWTR",
+  "entityType": "ce_tweet",
+  "source": {
+    "sourceConfig": {
+      "apiPullConfig": {
+        "requestType": "GET",
+        "url": "https://api.twitter.com/2/users/${{UserId}}/tweets",
+        "authentication": {
+          "bearerToken": "AAAAAAAAAAAAAAAAAAAAAGuvSQEAAAAARoDsPDyNl9NZmlO%2Bc7nHhOiEaA8%3DtetUPN9LDJE1zWgCCtshfV6inpU6zwH0R3poKvahRP4NUapEgN"
+        },
+        "paginationControl": {
+          "cursorPagination": {
+            "pageKey": "pagination_token",
+            "cursor": "meta.next_token",
+            "cursorType": "TOKEN",
+            "detectCursorInHeader": false
+          }
+        },
+        "headers": {},
+        "queryParams": {
+          "exclude": "retweets",
+          "expansions": "author_id,attachments.media_keys",
+          "max_results": "100",
+          "media.fields": "preview_image_url,url",
+          "tweet.fields": "created_at,referenced_tweets,text,public_metrics,author_id,source,possibly_sensitive",
+          "user.fields": "profile_image_url,name,username,verified"
+        },
+        "dataFormat": "JSON"
+      }
+    },
+    "baseSelector": {
+      "type": "JSON",
+      "header": "Entity Container",
+      "path": "data"
+    },
+    "selectors": [
+      {
+        "type": "JSON",
+        "header": "id",
+        "path": "id"
+      },
+      {
+        "type": "JSON",
+        "header": "body",
+        "path": "text"
+      },
+      {
+        "type": "JSON",
+        "header": "dateposted",
+        "path": "created_at"
+      },
+      {
+        "type": "JSON",
+        "header": "author",
+        "path": "author_id"
+      },
+      {
+        "type": "JSON",
+        "header": "possiblySensitive",
+        "path": "possibly_sensitive"
+      },
+      {
+        "type": "JSON",
+        "header": "retweets",
+        "path": "public_metrics.retweet_count"
+      },
+      {
+        "type": "JSON",
+        "header": "replies",
+        "path": "public_metrics.reply_count"
+      },
+      {
+        "type": "JSON",
+        "header": "likes",
+        "path": "public_metrics.like_count"
+      },
+      {
+        "type": "JSON",
+        "header": "quotes",
+        "path": "public_metrics.quote_count"
+      },
+      {
+        "type": "JSON",
+        "header": "source",
+        "path": "source"
+      }
+    ]
+  },
+  "transforms": [
+    {
+      "extractText": {
+        "inputHeader": "dateposted",
+        "newColumnHeader": "dateposted2",
+        "extractOperation": "ALL_TEXT_BEFORE",
+        "extractFrom": "FIRST_INSTANCE_MATCHING_TEXT",
+        "valueToFind": {
+          "plainText": {
+            "value": "T",
+            "ignoreCase": false
+          }
+        }
+      }
+    },
+    {
+      "findAndReplace": {
+        "inputHeaders": {
+          "headers": [
+            "possiblySensitive"
+          ]
+        },
+        "valueToFind": {
+          "plainText": {
+            "value": "false",
+            "ignoreCase": false
+          }
+        },
+        "replacement": "No"
+      }
+    },
+    {
+      "findAndReplace": {
+        "inputHeaders": {
+          "headers": [
+            "possiblySensitive"
+          ]
+        },
+        "valueToFind": {
+          "plainText": {
+            "value": "true",
+            "ignoreCase": false
+          }
+        },
+        "replacement": "Yes"
+      }
+    }
+  ],
+  "mappings": [
+    {
+      "field": "yext/name",
+      "header": "dateposted",
+      "subfieldPath": []
+    },
+    {
+      "field": "c_possiblySensitive",
+      "header": "possiblySensitive",
+      "subfieldPath": []
+    },
+    {
+      "field": "yext/datePosted",
+      "header": "dateposted2",
+      "subfieldPath": []
+    },
+    {
+      "field": "c_replies",
+      "header": "replies",
+      "subfieldPath": []
+    },
+    {
+      "field": "c_userID",
+      "header": "author",
+      "subfieldPath": []
+    },
+    {
+      "field": "yext/entityId",
+      "header": "id",
+      "subfieldPath": []
+    },
+    {
+      "field": "c_source",
+      "header": "source",
+      "subfieldPath": []
+    },
+    {
+      "field": "yext/body",
+      "header": "body",
+      "subfieldPath": []
+    },
+    {
+      "field": "c_retweets",
+      "header": "retweets",
+      "subfieldPath": []
+    },
+    {
+      "field": "c_quotes",
+      "header": "quotes",
+      "subfieldPath": []
+    },
+    {
+      "field": "c_likes",
+      "header": "likes",
+      "subfieldPath": []
+    }
+  ],
+  "scheduleConfig": {
+    "useSourceSchedule": false,
+    "runMode": "DEFAULT"
+  }
+}
