@@ -1,0 +1,12 @@
+{
+  "$id": "c_quotes",
+  "$schema": "https://schema.yext.com/config/km/field/v1",
+  "description": "",
+  "displayName": "Quotes",
+  "group": "NONE",
+  "localization": "PRIMARY_ONLY",
+  "type": {
+    "decimalType": {}
+  },
+  "typeId": "yext/decimal"
+}
