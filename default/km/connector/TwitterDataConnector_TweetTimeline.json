@@ -1,5 +1,5 @@
 {
-  "$id": "TwitterDataConnector",
+  "$id": "TwitterDataConnector_TwitterDataConnector",
   "$schema": "https://schema.yext.com/config/km/connector/v1",
   "displayName": "TwitterDataConnector",
   "entityType": "TwitterDataConnector_tweet",
