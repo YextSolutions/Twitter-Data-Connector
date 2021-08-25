@@ -1,5 +1,5 @@
 {
-  "$id": "c_possiblySensitive",
+  "$id": "TwitterDataConnector_possiblySensitive",
   "$schema": "https://schema.yext.com/config/km/field/v1",
   "description": "",
   "displayName": "Possibly Sensitive",

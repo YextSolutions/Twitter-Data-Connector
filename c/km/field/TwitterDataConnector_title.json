@@ -1,5 +1,5 @@
 {
-  "$id": "c_title",
+  "$id": "TwitterDataConnector_title",
   "$schema": "https://schema.yext.com/config/km/field/v1",
   "description": "",
   "displayName": "Title",

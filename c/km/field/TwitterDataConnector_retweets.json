@@ -1,5 +1,5 @@
 {
-  "$id": "c_retweets",
+  "$id": "TwitterDataConnector_retweets",
   "$schema": "https://schema.yext.com/config/km/field/v1",
   "description": "",
   "displayName": "Retweets",

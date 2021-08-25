@@ -1,5 +1,5 @@
 {
-  "$id": "c_twitterUsername",
+  "$id": "TwitterDataConnector_twitterUsername",
   "$schema": "https://schema.yext.com/config/km/field/v1",
   "description": "",
   "displayName": "Twitter Username",

@@ -1,5 +1,5 @@
 {
-  "$id": "ce_tweet",
+  "$id": "TwitterDataConnector_tweet",
   "$schema": "https://schema.yext.com/config/km/entity-type/v1",
   "description": "",
   "displayName": "Tweet",
@@ -18,31 +18,31 @@
       "required": true
     },
     {
-      "id": "c_likes",
+      "id": "TwitterDataConnector_likes",
       "required": false
     },
     {
-      "id": "c_possiblySensitive",
+      "id": "TwitterDataConnector_possiblySensitive",
       "required": false
     },
     {
-      "id": "c_quotes",
+      "id": "TwitterDataConnector_quotes",
       "required": false
     },
     {
-      "id": "c_replies",
+      "id": "TwitterDataConnector_replies",
       "required": false
     },
     {
-      "id": "c_retweets",
+      "id": "TwitterDataConnector_retweets",
       "required": false
     },
     {
-      "id": "c_source",
+      "id": "TwitterDataConnector_source",
       "required": false
     },
     {
-      "id": "c_twitterUsername",
+      "id": "TwitterDataConnector_twitterUsername",
       "required": false
     },
     {

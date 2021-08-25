@@ -1,5 +1,5 @@
 {
-  "$id": "c_likes",
+  "$id": "TwitterDataConnector_likes",
   "$schema": "https://schema.yext.com/config/km/field/v1",
   "description": "",
   "displayName": "Likes",
