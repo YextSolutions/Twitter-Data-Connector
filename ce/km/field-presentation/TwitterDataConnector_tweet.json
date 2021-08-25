@@ -1,7 +1,7 @@
 {
   "$id": "ce_tweet",
   "$schema": "https://schema.yext.com/config/km/field-presentation/v1",
-  "entityType": "ce_tweet",
+  "entityType": "TwitterDataConnector_tweet",
   "displayName": "tweet",
   "presentationEntries": [
     {

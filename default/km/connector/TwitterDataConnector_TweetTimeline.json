@@ -1,8 +1,8 @@
 {
-  "$id": "TweetTimeline",
+  "$id": "TwitterDataConnector",
   "$schema": "https://schema.yext.com/config/km/connector/v1",
-  "displayName": "Tweet Timeline",
-  "entityType": "ce_tweet",
+  "displayName": "TwitterDataConnector",
+  "entityType": "TwitterDataConnector_tweet",
   "source": {
     "sourceConfig": {
       "apiPullConfig": {
