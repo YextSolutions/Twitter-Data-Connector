@@ -228,6 +228,6 @@
       "startTime": "00:00",
       "frequencyType": "DAILY"
     },
-    "runMode": "COMPREHENSIVE"
+    "runMode": "DEFAULT"
   }
 }
