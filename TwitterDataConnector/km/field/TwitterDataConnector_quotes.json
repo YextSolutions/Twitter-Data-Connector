@@ -8,5 +8,5 @@
   "type": {
     "decimalType": {}
   },
-  "typeId": "yext/decimal"
+  "typeId": "decimal"
 }

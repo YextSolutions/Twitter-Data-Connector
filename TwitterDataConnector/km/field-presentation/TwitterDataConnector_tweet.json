@@ -13,21 +13,21 @@
       "entryType": "SECTION",
       "fields": [
         {
-          "id": "yext/name",
+          "id": "name",
           "visibleOnAdd": true
         },
         {
-          "id": "yext/entityId",
+          "id": "entityId",
           "visibleOnAdd": true
         },
         {
           "id": "TwitterDataConnector_twitterUsername"
         },
         {
-          "id": "yext/body"
+          "id": "body"
         },
         {
-          "id": "yext/datePosted"
+          "id": "datePosted"
         },
         {
           "id": "TwitterDataConnector_retweets"
@@ -58,10 +58,10 @@
       "entryType": "SECTION",
       "fields": [
         {
-          "id": "yext/folder"
+          "id": "folder"
         },
         {
-          "id": "yext/labels"
+          "id": "labels"
         }
       ]
     }
