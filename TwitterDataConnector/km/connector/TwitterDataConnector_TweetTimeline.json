@@ -97,7 +97,7 @@
             "Author"
           ]
         },
-        "plugin": "Replace User ID",
+        "plugin": "replaceUserId",
         "function": "insertUsername"
       }
     },
