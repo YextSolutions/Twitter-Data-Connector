@@ -1,5 +1,5 @@
 {
-  "$id": "Replace User ID",
+  "$id": "replaceUserId",
   "$schema": "https://schema.yext.com/config/platform/plugin/v1",
   "globals": {
     "Username": "${{TwitterUsername}}"
