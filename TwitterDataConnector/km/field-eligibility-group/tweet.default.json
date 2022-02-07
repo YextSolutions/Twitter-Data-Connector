@@ -1,0 +1,17 @@
+{
+  "$id": "TwitterDataConnector_tweet.default",
+  "$schema": "https://schema.yext.com/config/km/field-eligibility-group/v1",
+  "name": "Tweet-default",
+  "entityType": "TwitterDataConnector_tweet",
+  "fields": [
+    "body",
+    "datePosted",
+    "TwitterDataConnector_likes",
+    "TwitterDataConnector_possiblySensitive",
+    "TwitterDataConnector_quotes",
+    "TwitterDataConnector_replies",
+    "TwitterDataConnector_retweets",
+    "TwitterDataConnector_source",
+    "TwitterDataConnector_twitterUsername"
+  ]
+}
