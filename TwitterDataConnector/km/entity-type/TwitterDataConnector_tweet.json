@@ -1,62 +1,7 @@
 {
   "$id": "TwitterDataConnector_tweet",
-  "$schema": "https://schema.yext.com/config/km/entity-type/v1",
+  "$schema": "https://schema.yext.com/config/km/entity-type/v2",
   "description": "",
   "displayName": "Tweet",
-  "enabled": true,
-  "field": [
-    {
-      "id": "body",
-      "required": false
-    },
-    {
-      "id": "datePosted",
-      "required": false
-    },
-    {
-      "id": "name",
-      "required": true
-    },
-    {
-      "id": "TwitterDataConnector_likes",
-      "required": false
-    },
-    {
-      "id": "TwitterDataConnector_possiblySensitive",
-      "required": false
-    },
-    {
-      "id": "TwitterDataConnector_quotes",
-      "required": false
-    },
-    {
-      "id": "TwitterDataConnector_replies",
-      "required": false
-    },
-    {
-      "id": "TwitterDataConnector_retweets",
-      "required": false
-    },
-    {
-      "id": "TwitterDataConnector_source",
-      "required": false
-    },
-    {
-      "id": "TwitterDataConnector_twitterUsername",
-      "required": false
-    },
-    {
-      "id": "folder",
-      "required": false
-    },
-    {
-      "id": "labels",
-      "required": false
-    },
-    {
-      "id": "entityId",
-      "required": true
-    }
-  ],
   "pluralDisplayName": "Tweets"
 }
