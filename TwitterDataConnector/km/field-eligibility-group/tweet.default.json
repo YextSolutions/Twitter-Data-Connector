@@ -1,5 +1,5 @@
 {
-  "$id": "TwitterDataConnector_tweet.default",
+  "$id": "TwitterDataConnector_tweet",
   "$schema": "https://schema.yext.com/config/km/field-eligibility-group/v1",
   "name": "Tweet-default",
   "entityType": "TwitterDataConnector_tweet",
