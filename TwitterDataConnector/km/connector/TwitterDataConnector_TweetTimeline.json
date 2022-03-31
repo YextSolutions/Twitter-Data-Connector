@@ -5,36 +5,13 @@
   "entityType": "TwitterDataConnector_tweet",
   "source": {
     "sourceConfig": {
-      "apiPullConfig": {
-        "requestType": "GET",
-        "url": "https://api.twitter.com/2/users/${{TwitterUserID}}/tweets",
-        "authentication": {
-          "bearerToken": "AAAAAAAAAAAAAAAAAAAAAGuvSQEAAAAARoDsPDyNl9NZmlO%2Bc7nHhOiEaA8%3DtetUPN9LDJE1zWgCCtshfV6inpU6zwH0R3poKvahRP4NUapEgN"
-        },
-        "paginationControl": {
-          "cursorPagination": {
-            "pageKey": "pagination_token",
-            "cursor": "meta.next_token",
-            "cursorType": "TOKEN",
-            "detectCursorInHeader": false
-          }
-        },
-        "headers": {},
-        "queryParams": {
-          "exclude": "retweets",
-          "expansions": "author_id,attachments.media_keys",
-          "max_results": "100",
-          "media.fields": "preview_image_url,url",
-          "tweet.fields": "created_at,referenced_tweets,text,public_metrics,author_id,source,possibly_sensitive",
-          "user.fields": "profile_image_url,name,username,verified"
-        },
-        "dataFormat": "JSON"
+      "nativeSourceConfig": {
+        "source": "twitter",
+        "operation": "fetchTweets",
+        "inputs": {
+          "userID": "19165996"
+        }
       }
-    },
-    "baseSelector": {
-      "type": "JSON",
-      "header": "Entity Container",
-      "path": "data"
     },
     "selectors": [
       {
