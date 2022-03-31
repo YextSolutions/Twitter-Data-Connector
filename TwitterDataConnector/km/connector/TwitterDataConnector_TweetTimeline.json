@@ -9,7 +9,7 @@
         "source": "twitter",
         "operation": "fetchTweets",
         "inputs": {
-          "userID":"${{TwitterUserID}}"
+          "userID": "${{TwitterUserID}}"
         }
       }
     },
