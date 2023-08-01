@@ -1,69 +1,69 @@
 {
-  "$id": "TwitterDataConnector_tweet",
-  "$schema": "https://schema.yext.com/config/km/field-presentation/v1",
-  "entityType": "TwitterDataConnector_tweet",
-  "displayName": "tweet",
-  "presentationEntries": [
-    {
-      "displayName": "Content",
-      "entryType": "DIVIDER"
-    },
-    {
-      "displayName": "Core Information",
-      "entryType": "SECTION",
-      "fields": [
+    "$id": "TwitterDataConnector_tweet",
+    "$schema": "https://schema.yext.com/config/km/field-presentation/v1",
+    "entityType": "TwitterDataConnector_tweet",
+    "displayName": "tweet",
+    "presentationEntries": [
         {
-          "id": "name",
-          "visibleOnAdd": true
+            "displayName": "Content",
+            "entryType": "DIVIDER"
         },
         {
-          "id": "entityId",
-          "visibleOnAdd": true
+            "displayName": "Core Information",
+            "entryType": "SECTION",
+            "fields": [
+                {
+                    "id": "name",
+                    "visibleOnAdd": true
+                },
+                {
+                    "id": "entityId",
+                    "visibleOnAdd": true
+                },
+                {
+                    "id": "TwitterDataConnector_twitterUsername"
+                },
+                {
+                    "id": "bodyV2"
+                },
+                {
+                    "id": "datePosted"
+                },
+                {
+                    "id": "TwitterDataConnector_retweets"
+                },
+                {
+                    "id": "TwitterDataConnector_replies"
+                },
+                {
+                    "id": "TwitterDataConnector_likes"
+                },
+                {
+                    "id": "TwitterDataConnector_quotes"
+                },
+                {
+                    "id": "TwitterDataConnector_source"
+                },
+                {
+                    "id": "TwitterDataConnector_possiblySensitive"
+                }
+            ]
         },
         {
-          "id": "TwitterDataConnector_twitterUsername"
+            "displayName": "Other",
+            "entryType": "DIVIDER"
         },
         {
-          "id": "body"
-        },
-        {
-          "id": "datePosted"
-        },
-        {
-          "id": "TwitterDataConnector_retweets"
-        },
-        {
-          "id": "TwitterDataConnector_replies"
-        },
-        {
-          "id": "TwitterDataConnector_likes"
-        },
-        {
-          "id": "TwitterDataConnector_quotes"
-        },
-        {
-          "id": "TwitterDataConnector_source"
-        },
-        {
-          "id": "TwitterDataConnector_possiblySensitive"
+            "displayName": "Internal Use Only",
+            "entryType": "SECTION",
+            "fields": [
+                {
+                    "id": "folder"
+                },
+                {
+                    "id": "labels"
+                }
+            ]
         }
-      ]
-    },
-    {
-      "displayName": "Other",
-      "entryType": "DIVIDER"
-    },
-    {
-      "displayName": "Internal Use Only",
-      "entryType": "SECTION",
-      "fields": [
-        {
-          "id": "folder"
-        },
-        {
-          "id": "labels"
-        }
-      ]
-    }
-  ]
+    ]
 }

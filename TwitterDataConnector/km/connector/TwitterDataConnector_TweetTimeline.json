@@ -1,210 +1,220 @@
 {
-  "$id": "TwitterDataConnector_TwitterDataConnector",
-  "$schema": "https://schema.yext.com/config/km/connector/v2",
-  "displayName": "TwitterDataConnector",
-  "entityType": "TwitterDataConnector_tweet",
-  "source": {
-    "sourceConfig": {
-      "nativeSourceConfig": {
-        "source": "twitter",
-        "operation": "fetchTweets",
-        "inputs": {
-          "userID": "${{TwitterUserID}}"
+    "$id": "TwitterDataConnector_TwitterDataConnector",
+    "$schema": "https://schema.yext.com/config/km/connector/v4",
+    "displayName": "TwitterDataConnector",
+    "entityTypes": [
+        "TwitterDataConnector_tweet"
+    ],
+    "source": {
+        "sourceConfig": {
+            "nativeSourceConfig": {
+                "source": "twitter",
+                "operation": "fetchTweets",
+                "inputs": {
+                    "userID": "${{TwitterUserID}}"
+                }
+            }
+        },
+        "selectors": [
+            {
+                "type": "JSON",
+                "header": "Entity ID",
+                "path": "id"
+            },
+            {
+                "type": "JSON",
+                "header": "Text",
+                "path": "text"
+            },
+            {
+                "type": "JSON",
+                "header": "Date",
+                "path": "created_at"
+            },
+            {
+                "type": "JSON",
+                "header": "Author",
+                "path": "author_id"
+            },
+            {
+                "type": "JSON",
+                "header": "Possibly Sensitive",
+                "path": "possibly_sensitive"
+            },
+            {
+                "type": "JSON",
+                "header": "Retweets",
+                "path": "public_metrics.retweet_count"
+            },
+            {
+                "type": "JSON",
+                "header": "Replies",
+                "path": "public_metrics.reply_count"
+            },
+            {
+                "type": "JSON",
+                "header": "Likes",
+                "path": "public_metrics.like_count"
+            },
+            {
+                "type": "JSON",
+                "header": "Quotes",
+                "path": "public_metrics.quote_count"
+            },
+            {
+                "type": "JSON",
+                "header": "Source",
+                "path": "source"
+            }
+        ]
+    },
+    "transforms": [
+        {
+            "function": {
+                "inputHeaders": {
+                    "headers": [
+                        "Author"
+                    ]
+                },
+                "plugin": "replaceUserId",
+                "function": "insertUsername"
+            }
+        },
+        {
+            "findAndReplace": {
+                "inputHeaders": {
+                    "headers": [
+                        "Author"
+                    ]
+                },
+                "valueToFind": {
+                    "plainText": {
+                        "value": "@@",
+                        "ignoreCase": false
+                    }
+                },
+                "replacement": "@"
+            }
+        },
+        {
+            "extractText": {
+                "inputHeader": "Date",
+                "newColumnHeader": "Date Converted",
+                "extractOperation": "ALL_TEXT_BEFORE",
+                "extractFrom": "FIRST_INSTANCE_MATCHING_TEXT",
+                "valueToFind": {
+                    "plainText": {
+                        "value": "T",
+                        "ignoreCase": false
+                    }
+                }
+            }
+        },
+        {
+            "findAndReplace": {
+                "inputHeaders": {
+                    "headers": [
+                        "Possibly Sensitive"
+                    ]
+                },
+                "valueToFind": {
+                    "plainText": {
+                        "value": "false",
+                        "ignoreCase": false
+                    }
+                },
+                "replacement": "no"
+            }
+        },
+        {
+            "findAndReplace": {
+                "inputHeaders": {
+                    "headers": [
+                        "Possibly Sensitive"
+                    ]
+                },
+                "valueToFind": {
+                    "plainText": {
+                        "value": "true",
+                        "ignoreCase": false
+                    }
+                },
+                "replacement": "yes"
+            }
         }
-      }
-    },
-    "selectors": [
-      {
-        "type": "JSON",
-        "header": "Entity ID",
-        "path": "id"
-      },
-      {
-        "type": "JSON",
-        "header": "Text",
-        "path": "text"
-      },
-      {
-        "type": "JSON",
-        "header": "Date",
-        "path": "created_at"
-      },
-      {
-        "type": "JSON",
-        "header": "Author",
-        "path": "author_id"
-      },
-      {
-        "type": "JSON",
-        "header": "Possibly Sensitive",
-        "path": "possibly_sensitive"
-      },
-      {
-        "type": "JSON",
-        "header": "Retweets",
-        "path": "public_metrics.retweet_count"
-      },
-      {
-        "type": "JSON",
-        "header": "Replies",
-        "path": "public_metrics.reply_count"
-      },
-      {
-        "type": "JSON",
-        "header": "Likes",
-        "path": "public_metrics.like_count"
-      },
-      {
-        "type": "JSON",
-        "header": "Quotes",
-        "path": "public_metrics.quote_count"
-      },
-      {
-        "type": "JSON",
-        "header": "Source",
-        "path": "source"
-      }
-    ]
-  },
-  "transforms": [
-    {
-      "function": {
-        "inputHeaders": {
-          "headers": [
-            "Author"
-          ]
+    ],
+    "mappings": [
+        {
+            "field": "datePosted",
+            "header": "Date Converted",
+            "subfieldPath": []
         },
-        "plugin": "replaceUserId",
-        "function": "insertUsername"
-      }
-    },
-    {
-      "findAndReplace": {
-        "inputHeaders": {
-          "headers": [
-            "Author"
-          ]
+        {
+            "field": "TwitterDataConnector_retweets",
+            "header": "Retweets",
+            "subfieldPath": []
         },
-        "valueToFind": {
-          "plainText": {
-            "value": "@@",
-            "ignoreCase": false
-          }
+        {
+            "field": "entityId",
+            "header": "Entity ID",
+            "subfieldPath": []
         },
-        "replacement": "@"
-      }
-    },
-    {
-      "extractText": {
-        "inputHeader": "Date",
-        "newColumnHeader": "Date Converted",
-        "extractOperation": "ALL_TEXT_BEFORE",
-        "extractFrom": "FIRST_INSTANCE_MATCHING_TEXT",
-        "valueToFind": {
-          "plainText": {
-            "value": "T",
-            "ignoreCase": false
-          }
+        {
+            "field": "TwitterDataConnector_possiblySensitive",
+            "header": "Possibly Sensitive",
+            "subfieldPath": []
+        },
+        {
+            "field": "bodyV2",
+            "header": "Text",
+            "subfieldPath": [
+                {
+                    "name": "markdown"
+                }
+            ]
+        },
+        {
+            "field": "TwitterDataConnector_quotes",
+            "header": "Quotes",
+            "subfieldPath": []
+        },
+        {
+            "field": "TwitterDataConnector_likes",
+            "header": "Likes",
+            "subfieldPath": []
+        },
+        {
+            "field": "TwitterDataConnector_replies",
+            "header": "Replies",
+            "subfieldPath": []
+        },
+        {
+            "field": "name",
+            "header": "Date",
+            "subfieldPath": []
+        },
+        {
+            "field": "TwitterDataConnector_source",
+            "header": "Source",
+            "subfieldPath": []
+        },
+        {
+            "field": "TwitterDataConnector_twitterUsername",
+            "header": "Author",
+            "subfieldPath": []
         }
-      }
+    ],
+    "scheduleConfig": {
+        "customSchedule": {
+            "timeZone": "America/New_York",
+            "startDate": "2021-09-14",
+            "startTime": "00:00",
+            "frequencyType": "DAILY"
+        },
+        "runMode": "COMPREHENSIVE"
     },
-    {
-      "findAndReplace": {
-        "inputHeaders": {
-          "headers": [
-            "Possibly Sensitive"
-          ]
-        },
-        "valueToFind": {
-          "plainText": {
-            "value": "false",
-            "ignoreCase": false
-          }
-        },
-        "replacement": "no"
-      }
-    },
-    {
-      "findAndReplace": {
-        "inputHeaders": {
-          "headers": [
-            "Possibly Sensitive"
-          ]
-        },
-        "valueToFind": {
-          "plainText": {
-            "value": "true",
-            "ignoreCase": false
-          }
-        },
-        "replacement": "yes"
-      }
+    "comprehensiveModeConfig": {
+        "comprehensiveSet": "ENTITIES_CREATED_BY_THIS_CONNECTOR",
+        "actionOnMissingEntities": "DELETE"
     }
-  ],
-  "mappings": [
-    {
-      "field": "datePosted",
-      "header": "Date Converted",
-      "subfieldPath": []
-    },
-    {
-      "field": "TwitterDataConnector_retweets",
-      "header": "Retweets",
-      "subfieldPath": []
-    },
-    {
-      "field": "entityId",
-      "header": "Entity ID",
-      "subfieldPath": []
-    },
-    {
-      "field": "TwitterDataConnector_possiblySensitive",
-      "header": "Possibly Sensitive",
-      "subfieldPath": []
-    },
-    {
-      "field": "body",
-      "header": "Text",
-      "subfieldPath": []
-    },
-    {
-      "field": "TwitterDataConnector_quotes",
-      "header": "Quotes",
-      "subfieldPath": []
-    },
-    {
-      "field": "TwitterDataConnector_likes",
-      "header": "Likes",
-      "subfieldPath": []
-    },
-    {
-      "field": "TwitterDataConnector_replies",
-      "header": "Replies",
-      "subfieldPath": []
-    },
-    {
-      "field": "name",
-      "header": "Date",
-      "subfieldPath": []
-    },
-    {
-      "field": "TwitterDataConnector_source",
-      "header": "Source",
-      "subfieldPath": []
-    },
-    {
-      "field": "TwitterDataConnector_twitterUsername",
-      "header": "Author",
-      "subfieldPath": []
-    }
-  ],
-  "scheduleConfig": {
-    "customSchedule": {
-      "timeZone": "America/New_York",
-      "startDate": "2021-09-14",
-      "startTime": "00:00",
-      "frequencyType": "DAILY"
-    },
-    "runMode": "COMPREHENSIVE"
-  }
 }
